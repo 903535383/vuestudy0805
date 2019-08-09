@@ -1,0 +1,89 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>跑马灯</title>
+    <script src="./lib/vue.js"></script>
+
+</head>
+<body>
+    <div id="app">
+        <input type="button" value="浪起来" @click="lang">
+        <input type="button" value="低调" @click="stop">
+
+        <h4 v-text="msg"></h4>
+    </div>
+</body>
+    <script>
+        var vm = new Vue({
+            el:'#app',
+            data:{
+                msg:'猥琐发育,别浪~~~~~',
+                IntervalID:null
+            },
+            methods:{
+                // lang:function(){
+                //     console.log(this.msg);
+                // }
+
+               
+                lang(){
+                    //获取第一个字母
+                    // var start = this.msg.substring(0,1);
+                    // //获取最后一个字母
+                    // var end = this.msg.substring(1);
+                    // //拼接
+                    // this.msg = end + start;
+
+
+
+
+                    // var _this = this;
+                    // if(_this.IntervalID == null)
+                    // _this.IntervalID = setInterval(function() {
+                    //     //获取第一个字母
+                    //     var start = _this.msg.substring(0,1);
+                    //     //获取最后一个字母
+                    //     var end = _this.msg.substring(1);
+                    //     //拼接
+                    //     _this.msg = end + start;
+                    // }, 400);
+                    
+                    if(this.IntervalID == null)
+                    this.IntervalID = setInterval(() => {
+                        //  获取第一个字母
+                        var start = this.msg.substring(0,1);
+                        //获取最后一个字母
+                        var end = this.msg.substring(1);
+                        //拼接
+                        this.msg = end + start;
+                    }, 400);
+
+                },
+                
+                stop(){
+                    //停止定时器
+                    clearInterval(this.IntervalID);
+                    // alert(111);
+                    this.IntervalID = null;
+
+                }
+
+                
+                
+
+                
+            
+            }
+        })
+
+        //分析
+        //1. 实现 按钮  让字符串走起来 v-on事件触发
+        //2. 在按钮的事件中写相关的逻辑: 先拿到msg,然后调用字符串函数substring进行字符串截取
+        //把第一个字符串截取出来放在最后一个位置上
+        
+    </script>
+</html>

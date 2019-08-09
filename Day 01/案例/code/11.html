@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./lib/vue.js"></script>
+
+</head>
+<body>
+    <div id="app">
+        <input type="number" v-model="num1">
+        <select v-model="sele">
+            <option value="0">+</option>
+            <option value="1">-</option>
+            <option value="2">*</option>
+            <option value="3">/</option>
+        </select>
+        <input type="number" v-model="num2">
+        <!-- <input type="button" value="=" v-on:click="dy"> -->
+        <button v-on:click="dy">=</button>
+        <input type="text" v-model="result">
+    </div>
+</body>
+<script>
+    var vm = new Vue({
+        el:'#app',
+        data:{
+            num1:0,
+            sele:'0',
+            num2:0,
+            result:0
+        },
+        methods:{
+            dy(){
+                alert(this.sele);
+                switch(this.sele){
+                    case '0':
+                        this.result = parseInt(this.num1) + parseInt(this.num2);
+                        break;
+                    case '1':
+                        this.result = this.num1 - this.num2;
+                        alert(this.result);
+
+                        break;
+                    case '2':
+                        this.result = parseInt(this.num1) * parseInt(this.num2);
+                        alert(this.result);
+                        break;
+                    case '3':
+                        this.result = parseInt(this.num1) / parseInt(this.num2);
+                        alert(this.result);
+
+                        break;
+                }
+            }
+        }
+    })
+</script>
+</html>
